@@ -1,4 +1,5 @@
-function validationFuntion() {
+function validationFuntion(params) {
+    debugger;
     console.log('validation funtion is executed');
     return true;
 }

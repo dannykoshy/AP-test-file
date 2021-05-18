@@ -3,8 +3,8 @@ function validationFuntion(params) {
     return true;
 }
 
-function onClickFuntion(params) {
-    console.log('onClickFuntion ', param);
+function onClickViewConversationThread(params) {
+    console.log('onClick ', param);
     window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 }
 

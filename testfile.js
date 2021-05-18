@@ -1,5 +1,8 @@
 function validateViewConversationThread(params) {
     console.log('validation ', params);
+    if(params.metadata.processDefinationName !== "Yammer Notification") {
+        return false;
+    }
     return true;
 }
 

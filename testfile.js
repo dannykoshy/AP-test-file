@@ -9,6 +9,6 @@ function onClickViewConversationThread(params) {
 }
 
 export default {
-    validationFuntion,
-    onClickFuntion
+    validateViewConversationThread,
+    onClickViewConversationThread
 };

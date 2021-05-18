@@ -1,5 +1,5 @@
-function validationFuntion(params) {
-    console.log('validationFuntion ', params);
+function validateViewConversationThread(params) {
+    console.log('validation ', params);
     return true;
 }
 

@@ -9,10 +9,13 @@ function validateViewConversationThread(params) {
 function onClickViewConversationThread(params) {
     console.log('onClick ', params);
     
-    var query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.ActivityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
-	var JSONObject = {
-		encodedData: btoa(query)
-	};
+    const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.ActivityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
+    const JSONObject = {
+	encodedData: btoa(query)
+    };
+    const url = "https://trialas2.nxone.com/AgilePointServer"
+    
+    let response = params.serviceClient.postJSON(url, JSONObject);
     console.log(JSONObject);
     window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 }

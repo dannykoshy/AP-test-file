@@ -37,8 +37,7 @@ function onClickViewConversationThread(params) {
 	}).then((response) => {
 	   const parser = new DOMParser();
            const xmlDoc = parser.parseFromString(response,"text/xml");
-	   const threadIdText = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';');
-	   threadId = threadIdText[0];
+	   const threadId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';')[0];
 	   console.log(threadId);
 	});
 }

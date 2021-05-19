@@ -60,15 +60,20 @@ function onClickMSTeamActivities(params) {
     const attributeName = "/pd:AP/pd:processFields/pd:TeamURL";
 
     const data = {
-		"attrName": attributeName
-	};
+        "attrName": attributeName
+    };
 
     const response = params.serviceClient.postJSON(url, data);
     response.then((response) => {
+        return response.json();
+    }).then((response) => {
         console.log(response);
-    }, (error) => {
-        console.log(error);
-    })
+        // const parser = new DOMParser();
+        // const xmlDoc = parser.parseFromString(response, "text/xml");
+        // const threadId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';')[0];
+
+        // window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
+    });
 }
 
 export default {

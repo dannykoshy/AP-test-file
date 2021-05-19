@@ -26,7 +26,7 @@ function onClickViewConversationThread(params) {
     console.log('onClick ', params);
     
     const url = "/Extension/FetchUsingEncodedData";
-    const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.ActivityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
+    const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.activityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
     const data = {
 	encodedData: btoa(query)
     };

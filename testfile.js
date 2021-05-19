@@ -32,13 +32,13 @@ function onClickViewConversationThread(params) {
     };
     const response = params.serviceClient.postJSON(url, data);
 	response.then((response) => {
-		return response.json();
-	  //window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
+	   return response.json();
 	}).then((response) => {
 	   const parser = new DOMParser();
            const xmlDoc = parser.parseFromString(response,"text/xml");
 	   const threadId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';')[0];
-	   console.log(threadId);
+		
+	   window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
 	});
 }
 

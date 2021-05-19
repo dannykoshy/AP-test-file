@@ -32,10 +32,14 @@ function onClickViewConversationThread(params) {
     };
     const response = params.serviceClient.postJSON(url, data);
 	response.then((response) => {
+		const text = response.text();
+		return text
 	  console.log(response);
 	  //window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 	}, (error) => {
 	  console.log(error);
+	}.then(response) => {
+		console.log(response);
 	})
 }
 

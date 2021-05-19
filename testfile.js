@@ -16,7 +16,7 @@ function validateViewConversations(params) {
 
 function validateMSTeamActivities(params) {
     console.log('validation ', params);
-    if(params.metadata.processDefinationName !== "MS Teams Activities") {
+    if(params.metadata.processDefinationName !== "MS Teams Notification") {
         return false;
     }
     return true;

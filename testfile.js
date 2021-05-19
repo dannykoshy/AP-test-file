@@ -13,9 +13,12 @@ function onClickViewConversationThread(params) {
     const JSONObject = {
 	encodedData: btoa(query)
     };
-    const url = "https://trialas2.nxone.com/AgilePointServer"
+    const url = "/Extension/FetchUsingEncodedData"
     
     let response = params.serviceClient.postJSON(url, JSONObject);
+	response.then((value) => {
+	  console.log(value);
+	})
     console.log(JSONObject);
     window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 }

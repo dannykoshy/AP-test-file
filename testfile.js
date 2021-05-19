@@ -17,6 +17,8 @@ function onClickViewConversationThread(params) {
     let response = params.serviceClient.postJSON(url, data);
 	response.then((value) => {
 	  console.log(value);
+	}, (error) => {
+	  console.log(error);
 	})
     console.log(JSONObject);
     window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');

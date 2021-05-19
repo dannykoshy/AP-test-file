@@ -32,7 +32,7 @@ function onClickViewConversationThread(params) {
     };
     const response = params.serviceClient.postJSON(url, data);
 	response.then((response) => {
-		const text = response.text();
+		const text = response.json();
 		return text
 	  console.log(response);
 	  //window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');

@@ -9,13 +9,12 @@ function validateViewConversationThread(params) {
 function onClickViewConversationThread(params) {
     console.log('onClick ', params);
     
+    const url = "/Extension/FetchUsingEncodedData";
     const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.ActivityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
-    const JSONObject = {
+    const data = {
 	encodedData: btoa(query)
     };
-    const url = "/Extension/FetchUsingEncodedData"
-    
-    let response = params.serviceClient.postJSON(url, JSONObject);
+    let response = params.serviceClient.postJSON(url, data);
 	response.then((value) => {
 	  console.log(value);
 	})

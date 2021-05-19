@@ -14,14 +14,13 @@ function onClickViewConversationThread(params) {
     const data = {
 	encodedData: btoa(query)
     };
-    let response = params.serviceClient.postJSON(url, data);
-	response.then((value) => {
-	  console.log(value);
+    const response = params.serviceClient.postJSON(url, data);
+	response.then((response) => {
+	  console.log(response);
+	  //window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 	}, (error) => {
 	  console.log(error);
 	})
-    console.log(JSONObject);
-    window.open('https://web.yammer.com/main/users/eyJfdHlwZSI6IlVzZXIiLCJpZCI6Ijc3MjcyMjI3ODQwIn0');
 }
 
 export default {

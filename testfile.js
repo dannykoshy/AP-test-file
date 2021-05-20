@@ -15,7 +15,7 @@ function validateProcessCustomActions(params) {
 function onClickViewConversationThread(params) {
     getxmlData(params, (xmlData) => {
         const threadId = xmlData.getElementsByTagName("threadid")[0].textContent.split(';')[0];
-        window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
+        window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId, '_blank');
     });
 }
 

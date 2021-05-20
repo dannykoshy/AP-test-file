@@ -13,24 +13,20 @@ function validateProcessCustomActions(params) {
 }
 
 function onClickViewConversationThread(params) {
-    const url = "/Extension/FetchUsingEncodedData";
-    const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.activityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
-    const data = {
-        encodedData: btoa(query)
-    };
-    const response = params.serviceClient.postJSON(url, data);
-    response.then((response) => {
-        return response.json();
-    }).then((response) => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(response, "text/xml");
-        const threadId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';')[0];
+    let xmlData = getxmlData(params);
 
-        window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
-    });
+    const threadId = xmlData.getElementsByTagName("threadid")[0].textContent.split(';')[0];
+    window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
 }
 
 function onClickViewConversations(params) {
+    let xmlData = getxmlData(params);
+
+    const groupId = xmlData.getElementsByTagName("threadid")[0].textContent.split(':')[1];
+    console.log(groupId);
+}
+
+function getxmlData(params) {
     const url = "/Extension/FetchUsingEncodedData";
     const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.activityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
     const data = {
@@ -41,9 +37,8 @@ function onClickViewConversations(params) {
         return response.json();
     }).then((response) => {
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(response, "text/xml");
-        const groupId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(':')[1];
-        console.log(groupId);
+        const xmlData = parser.parseFromString(response, "text/xml");
+        return xmlData;
     });
 }
 

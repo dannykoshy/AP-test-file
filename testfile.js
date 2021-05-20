@@ -1,32 +1,32 @@
-function validateTasksCustomActions(params) {
+let validateTasksCustomActions = (params) => {
     if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
         return false;
     }
     return true;
 }
 
-function validateProcessCustomActions(params) {
+let validateProcessCustomActions = (params) => {
     if (params.metadata.definitionName !== "Tax Controversy - MS Teams") {
         return false;
     }
     return true;
 }
 
-function onClickViewConversationThread(params) {
+let onClickViewConversationThread = (params) => {
     getxmlData(params, (xmlData) => {
         const threadId = xmlData.getElementsByTagName("threadid")[0].textContent.split(';')[0];
         window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId, '_blank');
     });
 }
 
-function onClickViewConversations(params) {
+let onClickViewConversations = (params) => {
     getxmlData(params, (xmlData) => {
         const groupId = xmlData.getElementsByTagName("threadid")[0].textContent.split(':')[1];
         console.log(groupId);
     });
 }
 
-function getxmlData(params, callback) {
+let getxmlData = (params, callback) => {
     const url = "/Extension/FetchUsingEncodedData";
     const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.activityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
     const data = {
@@ -42,7 +42,7 @@ function getxmlData(params, callback) {
     });
 }
 
-function onClickMSTeamActivities(params) {
+let onClickMSTeamActivities = (params) => {
     const workObjectId = params.metadata.workObjectId;
     const url = "/Workflow/GetCustomAttr/" + workObjectId;
     const attributeName = "/pd:AP/pd:processFields/pd:TeamURL";

@@ -1,4 +1,4 @@
-function validateViewConversationThread(params) {
+function validateCustomAction(params) {
     if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
         return false;
     }
@@ -63,9 +63,7 @@ function onClickMSTeamActivities(params) {
 }
 
 export default {
-    validateViewConversations,
-    validateViewConversationThread,
-    validateMSTeamActivities,
+    validateCustomAction,
     onClickViewConversations,
     onClickViewConversationThread,
     onClickMSTeamActivities

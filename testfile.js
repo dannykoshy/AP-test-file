@@ -1,5 +1,12 @@
-function validateCustomAction(params) {
+function validateTasksCustomActions(params) {
     if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
+        return false;
+    }
+    return true;
+}
+
+function validateProcessCustomActions(params) {
+    if (params.metadata.definationName !== "Tax Controversy - MS Teams") {
         return false;
     }
     return true;
@@ -63,7 +70,8 @@ function onClickMSTeamActivities(params) {
 }
 
 export default {
-    validateCustomAction,
+    validateTasksCustomActions,
+    validateProcessCustomActions,
     onClickViewConversations,
     onClickViewConversationThread,
     onClickMSTeamActivities

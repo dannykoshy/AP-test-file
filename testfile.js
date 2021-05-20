@@ -60,12 +60,7 @@ function onClickMSTeamActivities(params) {
     response.then((response) => {
         return response.json();
     }).then((response) => {
-        console.log(response);
-        // const parser = new DOMParser();
-        // const xmlDoc = parser.parseFromString(response, "text/xml");
-        // const threadId = xmlDoc.getElementsByTagName("threadid")[0].textContent.split(';')[0];
-
-        // window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
+        window.open(response, '_blank');
     });
 }
 

@@ -6,7 +6,7 @@ function validateTasksCustomActions(params) {
 }
 
 function validateProcessCustomActions(params) {
-    if (params.metadata.definationName !== "Tax Controversy - MS Teams") {
+    if (params.metadata.definitionName !== "Tax Controversy - MS Teams") {
         return false;
     }
     return true;

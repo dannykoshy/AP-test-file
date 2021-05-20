@@ -13,20 +13,20 @@ function validateProcessCustomActions(params) {
 }
 
 function onClickViewConversationThread(params) {
-    let xmlData = getxmlData(params);
-
-    const threadId = xmlData.getElementsByTagName("threadid")[0].textContent.split(';')[0];
-    window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
+    getxmlData(params, (xmlData) => {
+        const threadId = xmlData.getElementsByTagName("threadid")[0].textContent.split(';')[0];
+        window.open('https://www.yammer.com/agilepoint462.onmicrosoft.com/#/Threads/show?threadId=' + threadId);
+    });
 }
 
 function onClickViewConversations(params) {
-    let xmlData = getxmlData(params);
-
-    const groupId = xmlData.getElementsByTagName("threadid")[0].textContent.split(':')[1];
-    console.log(groupId);
+    getxmlData(params, (xmlData) => {
+        const groupId = xmlData.getElementsByTagName("threadid")[0].textContent.split(':')[1];
+        console.log(groupId);
+    });
 }
 
-function getxmlData(params) {
+function getxmlData(params, callback) {
     const url = "/Extension/FetchUsingEncodedData";
     const query = "SELECT [MESSAGE_THREAD_ID] as threadid FROM [WF_SN_MSG_THREADS] where [ACTIVITY_INST_ID]= '" + params.metadata.activityInstID + "'" + "and SOCIAL_NETWORK_NAME = 'yammer'";
     const data = {
@@ -38,7 +38,7 @@ function getxmlData(params) {
     }).then((response) => {
         const parser = new DOMParser();
         const xmlData = parser.parseFromString(response, "text/xml");
-        return xmlData;
+        callback(xmlData)
     });
 }
 

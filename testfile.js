@@ -1,19 +1,5 @@
 function validateViewConversationThread(params) {
-    if (params.metadata.processDefinationName !== "Yammer Notification") {
-        return false;
-    }
-    return true;
-}
-
-function validateViewConversations(params) {
-    if (params.metadata.processDefinationName !== "Yammer Notification") {
-        return false;
-    }
-    return true;
-}
-
-function validateMSTeamActivities(params) {
-    if (params.metadata.processDefinationName !== "MS Teams Notification") {
+    if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
         return false;
     }
     return true;

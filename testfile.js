@@ -1,16 +1,18 @@
-let validateTasksCustomActions = (params) => {
-    if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
-        return false;
-    }
-    return true;
-};
+import 'https://canary-azure.assets-yammer.com/assets/platform_embed.js';
 
-let validateProcessCustomActions = (params) => {
-    if (params.metadata.definitionName !== "Tax Controversy - MS Teams") {
-        return false;
-    }
-    return true;
-};
+// const validateTasksCustomActions = (params) => {
+//     if (params.metadata.processDefinationName !== "Tax Controversy - MS Teams") {
+//         return false;
+//     }
+//     return true;
+// };
+
+// let validateProcessCustomActions = (params) => {
+//     if (params.metadata.definitionName !== "Tax Controversy - MS Teams") {
+//         return false;
+//     }
+//     return true;
+// };
 
 let onClickViewConversationThread = (params) => {
     _getxmlData(params, (xmlData) => {
@@ -22,7 +24,35 @@ let onClickViewConversationThread = (params) => {
 let onClickViewConversations = (params) => {
     _getxmlData(params, (xmlData) => {
         const groupId = xmlData.getElementsByTagName("threadid")[0].textContent.split(':')[1];
-        console.log(groupId);
+        const { utils: { requestPopupHost, requestFlyoutHost } } = params;
+        requestPopupHost({
+            showModal: true,
+            title: 'Private Message'
+        }, (hostElement, { closePopup }) => {
+            const divElement = document.createElement('div');
+            divElement.style.height = '450px';
+            divElement.style.width = '550px';
+            yam.connect.embedFeed({
+                container: divElement,
+                network: 'agilepoint462.onmicrosoft.com',
+                feedType: 'group',
+                feedId: groupId,
+                config: {
+                    header: false,
+                    footer: true
+                }
+            });
+            hostElement.appendChild(divElement);
+        });
+
+        // requestFlyoutHost({
+        //     showModal: true,
+        //     title: 'Private Message'
+        // }, (hostElement, { closePopup }) => {
+        //     const p = document.createElement('p');
+        //     p.innerText = 'This is custom content';
+        //     hostElement.appendChild(p);
+        // });
     });
 };
 
@@ -31,7 +61,7 @@ let onClickMSTeamActivities = (params) => {
     const workObjectId = params.metadata.workObjectId;
     const url = "/Workflow/GetCustomAttr/" + workObjectId;
     const attributeName = "/pd:AP/pd:processFields/pd:TeamURL";
-    
+
     const data = {
         "attrName": attributeName
     };
@@ -61,8 +91,8 @@ let _getxmlData = (params, callback) => {
 };
 
 export default {
-    validateTasksCustomActions,
-    validateProcessCustomActions,
+    // validateTasksCustomActions,
+    // validateProcessCustomActions,
     onClickViewConversations,
     onClickViewConversationThread,
     onClickMSTeamActivities
